@@ -22,8 +22,7 @@ public class PassTheNote_ECommerceTests : TestBase
             var element = driver.FindElement(By.CssSelector("[data-testid='ptn-product-add-button']"));
             return element.Displayed ? element : null!;
         });
-        Console.WriteLine(addToCartButton.Displayed);
-        Console.WriteLine(addToCartButton.Enabled);
+
         addToCartButton.Click();
 
         NavigateTo("/app/cart");
