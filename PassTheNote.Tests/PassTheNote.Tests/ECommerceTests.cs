@@ -17,13 +17,21 @@ public class PassTheNote_ECommerceTests : TestBase
 
         NavigateTo("/app/products");
 
-        var addToCartButton = _wait.Until(driver =>
+        var productCard = _wait.Until(driver =>
         {
-            var element = driver.FindElement(By.CssSelector("[data-testid='ptn-product-add-button']"));
+            var element = driver.FindElement(By.CssSelector("[data-testid='ptn-product-card']"));
             return element.Displayed ? element : null!;
         });
 
-        addToCartButton.Click();
+        var addToCartButton = _wait.Until(driver =>
+        {
+            var button = productCard.FindElement(By.XPath(".//button[contains(text(), 'Add to Cart')]"));
+            return button.Displayed && button.Enabled ? button : null!;
+        });
+
+        ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", addToCartButton);
+
+        Thread.Sleep(1000);
 
         NavigateTo("/app/cart");
 
