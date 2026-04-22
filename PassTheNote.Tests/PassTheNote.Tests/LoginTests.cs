@@ -13,9 +13,9 @@ public class PassTheNote_LoginTests : TestBase
     public void Login_WithValidCredentials_ShouldSucceed()
     {
         var user = new AccountData(TestEmail, TestPassword);
-        Login(user);
+        app.Auth.Login(user);
 
-        var isLoginSuccessful = _wait.Until(driver =>
+        var isLoginSuccessful = app.Wait.Until(driver =>
         {
             try
             {

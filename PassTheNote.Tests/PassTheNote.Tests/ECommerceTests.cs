@@ -13,29 +13,29 @@ public class PassTheNote_ECommerceTests : TestBase
     public void AddProduct_ToCart_ShouldSucceed()
     {
         var user = new AccountData(TestEmail, TestPassword);
-        Login(user);
+        app.Auth.Login(user);
 
-        NavigateTo("/app/products");
+        app.Navigation.NavigateTo("/app/products");
 
-        var productCard = _wait.Until(driver =>
+        var productCard = app.Wait.Until(driver =>
         {
             var element = driver.FindElement(By.CssSelector("[data-testid='ptn-product-card']"));
             return element.Displayed ? element : null!;
         });
 
-        var addToCartButton = _wait.Until(driver =>
+        var addToCartButton = app.Wait.Until(driver =>
         {
             var button = productCard.FindElement(By.XPath(".//button[contains(text(), 'Add to Cart')]"));
             return button.Displayed && button.Enabled ? button : null!;
         });
 
-        ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].click();", addToCartButton);
+        ((IJavaScriptExecutor)app.Driver).ExecuteScript("arguments[0].click();", addToCartButton);
 
         Thread.Sleep(1000);
 
-        NavigateTo("/app/cart");
+        app.Navigation.NavigateTo("/app/cart");
 
-        var isCartItemPresent = _wait.Until(driver =>
+        var isCartItemPresent = app.Wait.Until(driver =>
         {
             try
             {
