@@ -1,4 +1,4 @@
-namespace PassTheNote.Tests;
+namespace PassTheNote.Tests.Models;
 
 public class AccountData
 {

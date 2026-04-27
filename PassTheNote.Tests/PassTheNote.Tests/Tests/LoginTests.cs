@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
+using PassTheNote.Tests.Models;
 
-namespace PassTheNote.Tests;
+namespace PassTheNote.Tests.Tests;
 
 [TestFixture]
 public class PassTheNote_LoginTests : TestBase

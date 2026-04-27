@@ -1,4 +1,4 @@
-namespace PassTheNote.Tests;
+namespace PassTheNote.Tests.Helpers;
 
 public class NavigationHelper : HelperBase
 {

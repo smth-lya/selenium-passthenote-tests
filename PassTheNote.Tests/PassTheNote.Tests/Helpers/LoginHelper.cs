@@ -1,6 +1,7 @@
 using OpenQA.Selenium;
+using PassTheNote.Tests.Models;
 
-namespace PassTheNote.Tests;
+namespace PassTheNote.Tests.Helpers;
 
 public class LoginHelper : HelperBase
 {
