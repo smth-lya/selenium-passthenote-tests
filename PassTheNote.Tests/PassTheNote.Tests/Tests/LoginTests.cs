@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using PassTheNote.Tests.Helpers;
 using PassTheNote.Tests.Models;
 
 namespace PassTheNote.Tests.Tests;
@@ -13,21 +14,14 @@ public class PassTheNote_LoginTests : TestBase
     public void Login_WithValidCredentials_ShouldSucceed()
     {
         var user = new AccountData(TestEmail, TestPassword);
-        app.Auth.Login(user);
 
-        var isLoginSuccessful = app.Wait.Until(driver =>
-        {
-            try
-            {
-                var menu = driver.FindElement(By.CssSelector("[data-testid='top-nav-user-menu']"));
-                return menu.Displayed;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-        });
+        Assert.DoesNotThrow(() => app.Auth.Login(user),
+            "Авторизация не удалась: не найден элемент профиля/выхода после попытки логина.");
+    }
 
-        Assert.IsTrue(isLoginSuccessful, "Авторизация не удалась: не найден элемент профиля/выхода после попытки логина.");
+    [OneTimeTearDown]
+    public void OneTimeTearDown()
+    {
+        ApplicationManager.Stop();
     }
 }

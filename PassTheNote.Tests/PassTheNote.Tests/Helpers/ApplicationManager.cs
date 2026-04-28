@@ -4,7 +4,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace PassTheNote.Tests.Helpers;
 
-public class ApplicationManager : IDisposable
+public class ApplicationManager
 {
     private static ThreadLocal<ApplicationManager> _instance = new();
 
@@ -34,13 +34,9 @@ public class ApplicationManager : IDisposable
     }
 
     public IWebDriver Driver => _driver;
-
     public WebDriverWait Wait => _wait;
-
     public NavigationHelper Navigation => _navigation;
-
     public LoginHelper Auth => _auth;
-    
 
     public static ApplicationManager GetInstance()
     {
@@ -57,9 +53,7 @@ public class ApplicationManager : IDisposable
     public void Dispose()
     {
         if (_disposed)
-        {
             return;
-        }
 
         try
         {
@@ -73,26 +67,22 @@ public class ApplicationManager : IDisposable
         {
             _driver.Dispose();
             _disposed = true;
+            GC.SuppressFinalize(this);
 
             if (_instance.IsValueCreated && ReferenceEquals(_instance.Value, this))
-            {
                 _instance.Value = null!;
-            }
         }
     }
 
     public static void Stop()
     {
         if (!_instance.IsValueCreated || _instance.Value is null)
-        {
             return;
-        }
 
         _instance.Value.Dispose();
-        _instance.Dispose();
         _instance = new ThreadLocal<ApplicationManager>();
     }
-    
+
     ~ApplicationManager()
     {
         Dispose();

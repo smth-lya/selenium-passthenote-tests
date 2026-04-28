@@ -12,11 +12,4 @@ public abstract class TestBase
     {
         app = ApplicationManager.GetInstance();
     }
-
-    [TearDown]
-    public void TearDown()
-    {
-        app.Dispose();
-        app = null!;
-    }
 }
