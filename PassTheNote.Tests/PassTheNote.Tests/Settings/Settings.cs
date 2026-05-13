@@ -3,10 +3,6 @@ using PassTheNote.Tests.Models;
 
 namespace PassTheNote.Tests.Settings;
 
-/// <summary>
-/// Статический класс настроек. Читает конфигурацию из Settings.xml,
-/// который копируется в выходную папку при сборке.
-/// </summary>
 public static class AppSettings
 {
     public static readonly string File = "Settings.xml";
@@ -65,6 +61,5 @@ public static class AppSettings
         }
     }
 
-    /// <summary>Возвращает AccountData с дефолтными данными из Settings.xml.</summary>
     public static AccountData DefaultAccount => new AccountData(DefaultEmail, DefaultPassword);
 }
