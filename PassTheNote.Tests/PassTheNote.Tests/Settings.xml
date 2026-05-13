@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Settings>
+  <BaseUrl>https://www.passthenote.com</BaseUrl>
+  <DefaultEmail>tester@passthenote.com</DefaultEmail>
+  <DefaultPassword>Tester@123</DefaultPassword>
+</Settings>

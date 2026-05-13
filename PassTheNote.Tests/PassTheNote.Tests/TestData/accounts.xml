@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfAccountData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <AccountData>
-    <Email>ltydpj32814@passthenote.com</Email>
-    <Password>Test32814@Pass</Password>
+    <Email>admin@passthenote.com</Email>
+    <Password>Admin@123</Password>
   </AccountData>
   <AccountData>
-    <Email>hiweih32921@passthenote.com</Email>
-    <Password>Test32921@Pass</Password>
-  </AccountData>
-  <AccountData>
-    <Email>fscqyj42781@passthenote.com</Email>
-    <Password>Test42781@Pass</Password>
+    <Email>tester@passthenote.com</Email>
+    <Password>Tester@123</Password>
   </AccountData>
 </ArrayOfAccountData>

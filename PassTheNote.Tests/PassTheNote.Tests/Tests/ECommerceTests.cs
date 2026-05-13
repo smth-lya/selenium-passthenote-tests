@@ -1,13 +1,10 @@
 using OpenQA.Selenium;
-using PassTheNote.Tests.Models;
 
 namespace PassTheNote.Tests.Tests;
 
 [TestFixture]
-public class PassTheNote_ECommerceTests : TestBase
+public class PassTheNote_ECommerceTests : AuthBase
 {
-    private const string TestEmail = "tester@passthenote.com";
-    private const string TestPassword = "Tester@123";
     private const string CartClientErrorText = "Cannot read properties of null (reading 'cart')";
     private static readonly By ProductCardSelector = By.CssSelector("[data-testid='ptn-product-card']");
     private static readonly By CartItemSelector = By.CssSelector("[data-testid='ptn-cart-item']");
@@ -20,8 +17,6 @@ public class PassTheNote_ECommerceTests : TestBase
     [Test]
     public void AddProduct_ToCart_ShouldSucceed()
     {
-        var user = new AccountData(TestEmail, TestPassword);
-        app.Auth.Login(user);
         EnsureCartIsEmpty();
 
         app.Navigation.NavigateTo("/app/products");
@@ -48,8 +43,6 @@ public class PassTheNote_ECommerceTests : TestBase
     [Test]
     public void RemoveProduct_FromCart_ShouldSucceed()
     {
-        var user = new AccountData(TestEmail, TestPassword);
-        app.Auth.Login(user);
         EnsureCartIsEmpty();
 
         app.Navigation.NavigateTo("/app/products");

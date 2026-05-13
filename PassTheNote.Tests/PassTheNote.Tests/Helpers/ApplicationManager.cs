@@ -1,10 +1,11 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using PassTheNote.Tests.Settings;
 
 namespace PassTheNote.Tests.Helpers;
 
-public class ApplicationManager
+public class ApplicationManager 
 {
     private static ThreadLocal<ApplicationManager> _instance = new();
 
@@ -27,7 +28,7 @@ public class ApplicationManager
 
         _driver = new ChromeDriver(options);
         _wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(15));
-        _baseUrl = "https://www.passthenote.com";
+        _baseUrl = AppSettings.BaseUrl;
 
         _navigation = new NavigationHelper(this, _baseUrl);
         _auth = new LoginHelper(this);
@@ -55,9 +56,12 @@ public class ApplicationManager
         if (_disposed)
             return;
 
+        _disposed = true;
+        GC.SuppressFinalize(this);
+
         try
         {
-            _driver.Quit();
+            _driver?.Quit();
         }
         catch (Exception)
         {
@@ -65,9 +69,7 @@ public class ApplicationManager
         }
         finally
         {
-            _driver.Dispose();
-            _disposed = true;
-            GC.SuppressFinalize(this);
+            _driver?.Dispose();
 
             if (_instance.IsValueCreated && ReferenceEquals(_instance.Value, this))
                 _instance.Value = null!;

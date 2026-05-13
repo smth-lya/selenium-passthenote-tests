@@ -11,5 +11,6 @@ public abstract class TestBase
     public void SetUp()
     {
         app = ApplicationManager.GetInstance();
+        app.Navigation.NavigateTo("/");
     }
 }
